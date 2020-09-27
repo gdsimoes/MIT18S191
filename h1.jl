@@ -177,11 +177,8 @@ function vecvec_to_matrix(vecvec)
 	return M
 end
 
-# ╔═╡ c4761a7e-edf2-11ea-1e75-118e73dadbed
+# ╔═╡ 29f9d5a0-009c-11eb-33f9-69dbb613437b
 vecvec_to_matrix([[1,2], [3,4]])
-
-# ╔═╡ acb67550-006e-11eb-2cf8-d5b5e1dba5c0
-typeof([[1,2], [3,4]])
 
 # ╔═╡ 393667ca-edf2-11ea-09c5-c5d292d5e896
 md"""
@@ -195,15 +192,24 @@ M = zeros(2,3)
 
 # ╔═╡ 5d39761c-004e-11eb-3a90-7315d454d459
 begin
-	vecvec = Array{Array{Float64,1}, 1}
-	vecvec[1] = [1,2]
+	vecvec = Array{Array{Float64,1}, 1}()
+	append!(vecvec, [[1.0,2.0]])
 	println(vecvec)
 end
 
 # ╔═╡ 9f1c6d04-ed6c-11ea-007b-75e7e780703d
 function matrix_to_vecvec(matrix)
-	
-	return missing
+	y, x = size(matrix)
+	vecvec = Array{Array{Float64,1}, 1}()
+	for j in 1:x
+		v = Array{Float64,1}()
+		for i in 1:y
+			append!(v, matrix[i, j])
+		end
+		append!(vecvec, [v])
+	end
+		
+	return vecvec
 end
 
 # ╔═╡ 70955aca-ed6e-11ea-2330-89b4d20b1795
@@ -1414,8 +1420,7 @@ with_sobel_edge_detect(sobel_camera_image)
 # ╟─e3394c8a-edf0-11ea-1bb8-619f7abb6881
 # ╟─22f28dae-edf2-11ea-25b5-11c369ae1253
 # ╠═8c19fb72-ed6c-11ea-2728-3fa9219eddc4
-# ╠═c4761a7e-edf2-11ea-1e75-118e73dadbed
-# ╠═acb67550-006e-11eb-2cf8-d5b5e1dba5c0
+# ╠═29f9d5a0-009c-11eb-33f9-69dbb613437b
 # ╟─adfbe9b2-ed6c-11ea-09ac-675262f420df
 # ╟─393667ca-edf2-11ea-09c5-c5d292d5e896
 # ╠═56d87aa2-004e-11eb-271a-e7048a430c23
